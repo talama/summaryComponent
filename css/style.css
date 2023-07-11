@@ -7,7 +7,27 @@
   font-display: swap;
 }
 
-/* CSS Reset */
+:root {
+  /* Primary colors */
+  --light-red: 0, 100%, 67%;
+  --orange-yellow: 39, 100%, 56%;
+  --green-teal: 166, 100%, 36%;
+  --cobalt-blue: 234, 85%, 45%;
+
+  /* Gradients */
+  --light-slate-blue: 252, 100%, 67%;
+  --light-royal-blue: 241, 81%, 54%;
+  --violet-blue: 256, 72%, 46%;
+  --persian-blue: 241, 72%, 46%;
+
+  /* Neutral */
+  --white: 0, 0%, 100%;
+  --pale-blue: 221, 100%, 96%;
+  --light-lavander: 241, 100%, 89%;
+  --dark-grey-blue: 224, 30%, 27%;
+}
+
+/* CSS Reset based on https://www.joshwcomeau.com/css/custom-css-reset/ */
 *,
 *::before,
 *::after {
@@ -19,7 +39,7 @@ body {
   font-family: "Hanken Grotesk", "Arial", sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 img,
@@ -38,9 +58,6 @@ select {
   font: inherit;
 }
 
-html {
-}
-
 .summary-component {
   position: absolute;
   top: 50%;
@@ -55,26 +72,22 @@ html {
   display: flex;
 }
 
-.result,
-.summary {
+.result {
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
-  flex: 0 0 50%;
-}
-
-.result {
+  align-items: center;
   background: linear-gradient(
     to bottom,
-    hsl(252, 100%, 67%),
-    hsl(241, 81%, 54%)
+    hsl(var(--light-slate-blue)),
+    hsl(var(--light-royal-blue))
   );
   border-radius: 35px;
 }
 
 .result h3 {
-  color: hsl(241, 100%, 89%);
+  color: hsl(var(--light-lavander));
   font-weight: 700;
   font-size: 24px;
 }
@@ -84,8 +97,8 @@ html {
   height: 200px;
   background: linear-gradient(
     to bottom,
-    hsla(256, 72%, 46%, 1),
-    hsla(241, 72%, 46%, 0)
+    hsla(var(--violet-blue), 1),
+    hsla(var(--persian-blue), 0)
   );
   border-radius: 50%;
   z-index: 1;
@@ -104,7 +117,7 @@ html {
 
 .score__text {
   font-size: 18px;
-  color: hsl(241, 100%, 89%);
+  color: hsl(var(--light-lavander));
 }
 
 .result h2 {
@@ -115,22 +128,141 @@ html {
 
 .result p {
   text-align: center;
-  color: hsl(241, 100%, 89%);
+  color: hsl(var(--light-lavander));
   font-size: 18px;
   padding: 0 60px;
   margin-bottom: 30px;
 }
 
 .summary {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 40px 0 40px;
+}
+
+.summary h3 {
+  font-weight: 700;
+  font-size: 24px;
+  align-self: flex-start;
+}
+
+.summary__list {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.summary__list-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 15px 15px;
+  border-radius: 10px;
+}
+
+.subject {
+  display: flex;
+  gap: 10px;
+}
+
+.item-red {
+  background-color: hsla(var(--light-red), 0.1);
+
+  & .subject {
+    color: hsl(var(--light-red));
+  }
+
+  & .subject-score {
+    color: hsl(var(--dark-grey-blue));
+  }
+}
+
+.item-yellow {
+  background-color: hsla(var(--orange-yellow), 0.1);
+
+  & .subject {
+    color: hsl(var(--orange-yellow));
+  }
+
+  & .subject-score {
+    color: hsl(var(--dark-grey-blue));
+  }
+}
+
+.item-green {
+  background-color: hsla(var(--green-teal), 0.1);
+
+  & .subject {
+    color: hsl(var(--green-teal));
+  }
+
+  & .subject-score {
+    color: hsl(var(--dark-grey-blue));
+  }
+}
+
+.item-blue {
+  background-color: hsla(var(--cobalt-blue), 0.1);
+
+  & .subject {
+    color: hsl(var(--cobalt-blue));
+  }
+
+  & .subject-score {
+    color: hsl(var(--dark-grey-blue));
+  }
+}
+
+.summary__list-item span {
+  color: hsla(var(--dark-grey-blue), 0.5);
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  align-self: stretch;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: hsl(var(--white));
+  background: hsl(var(--dark-grey-blue));
+}
+
+.btn:hover {
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--light-slate-blue)),
+    hsl(var(--light-royal-blue))
+  );
 }
 
 /* ATTRIBUTION */
 .attribution {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 11px;
   text-align: center;
   font-weight: 500;
 }
 
-.attribution a {
-  color: hsl(228, 45% 44%);
+.attribution a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: hsl(228, 45%, 44%);
 }
