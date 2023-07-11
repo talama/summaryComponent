@@ -25,6 +25,10 @@
   --pale-blue: 221, 100%, 96%;
   --light-lavander: 241, 100%, 89%;
   --dark-grey-blue: 224, 30%, 27%;
+
+  /* Animation */
+  --item-anim-duration: 0.6s;
+  --item-anim-delay: 0.2s;
 }
 
 /* CSS Reset based on https://www.joshwcomeau.com/css/custom-css-reset/ */
@@ -68,7 +72,6 @@ select {
   border-radius: 35px;
   overflow: hidden;
   box-shadow: 15px 30px 40px rgba(0, 0, 0, 0.1);
-
   display: flex;
 }
 
@@ -165,6 +168,11 @@ select {
   font-weight: 700;
   padding: 15px 15px;
   border-radius: 10px;
+  transform: translateX(-80px);
+  opacity: 0;
+  animation: slide-right var(--item-anim-duration) forwards;
+  animation-timing-function: cubic-bezier(0, 0.7, 0.54, 1);
+  animation-delay: calc(var(--item-order) * var(--item-anim-delay));
 }
 
 .subject {
@@ -182,6 +190,7 @@ select {
   & .subject-score {
     color: hsl(var(--dark-grey-blue));
   }
+  --item-order: 1;
 }
 
 .item-yellow {
@@ -194,6 +203,7 @@ select {
   & .subject-score {
     color: hsl(var(--dark-grey-blue));
   }
+  --item-order: 2;
 }
 
 .item-green {
@@ -206,6 +216,7 @@ select {
   & .subject-score {
     color: hsl(var(--dark-grey-blue));
   }
+  --item-order: 3;
 }
 
 .item-blue {
@@ -218,6 +229,7 @@ select {
   & .subject-score {
     color: hsl(var(--dark-grey-blue));
   }
+  --item-order: 4;
 }
 
 .summary__list-item span {
@@ -265,4 +277,16 @@ a:link,
 a:visited {
   text-decoration: none;
   color: hsl(228, 45%, 44%);
+}
+
+/* Animation */
+@keyframes slide-right {
+  from {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
