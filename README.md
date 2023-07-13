@@ -20,5 +20,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [Github](https://github.com/)
+- Github - [talama](https://github.com/)
 - Frontend Mentor - [@talama](https://www.frontendmentor.io/profile/talama)
